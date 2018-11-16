@@ -1,7 +1,7 @@
 {
     "name": "muan/universal-parser",
     "version": "1.0",
-    "description": "Universal Parser for php",
+    "description": "Universal Parser in php",
     "type": "library",
     "license": "MIT",
     "authors": [
