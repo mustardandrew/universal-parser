@@ -1,0 +1,23 @@
+{
+    "name": "muan/universal-parser",
+    "version": "1.0",
+    "description": "Universal Parser for php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mustard Andrew",
+            "email": "mustard.andrew@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/css-selector": "^4.1",
+        "symfony/dom-crawler": "^4.1",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "UniversalParser\\": "src/"
+        }
+    }
+}
