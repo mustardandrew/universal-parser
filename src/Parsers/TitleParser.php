@@ -12,7 +12,7 @@ use UniversalParser\Values\StringValue;
  *
  * @package UniversalParser\Parsers
  */
-class TitleParser implements ParserInterface
+class TitleParser extends AbstractParser implements ParserInterface
 {
     /**
      * Get data
@@ -22,27 +22,11 @@ class TitleParser implements ParserInterface
      */
     public function getData(string &$content) : ValueInterface
     {
-        $value = '';
-
         $crawler = new Crawler($content);
 
-        if (($node = $crawler->filter('h1'))->count()) {
-            $value = $node->first()->text();
-        }
-
-        $value = $this->clearValue($value);
+        $value = $this->getTextByExp($crawler, 'h1');
+        $value = $this->cleanValue($value);
 
         return new StringValue($value);
-    }
-
-    /**
-     * Clear value
-     *
-     * @param string $value
-     * @return string
-     */
-    private function clearValue(string $value) : string
-    {
-        return trim($value);
     }
 }
