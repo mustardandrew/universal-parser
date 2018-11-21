@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * @package UniversalParser\Parsers
  */
-class AbstractParser
+abstract class AbstractParser
 {
     /**
      * @param Crawler $crawler

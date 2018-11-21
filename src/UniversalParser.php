@@ -36,16 +36,42 @@ class UniversalParser
     }
 
     /**
-     * Get data
+     *  Get data
      *
      * @param string $url
+     * @param bool $needConverted
      * @return array
      * @throws Exception
      */
-    public function getData(string $url) : array
+    public function getData(string $url, bool $needConverted = true) : array
     {
         $content = $this->httpClientAdapter->getContent($url);
+
         $data = $this->parse($content);
+
+        if ($needConverted) {
+            $data = $this->convertToSimpleData($data);
+        }
+
+        return $data;
+    }
+
+    /**
+     * Convert to simple data
+     *
+     * @param array $data
+     * @return array
+     */
+    private function convertToSimpleData(array $data) : array
+    {
+        foreach ($data as &$item) {
+            if (is_object($item) && method_exists($item, 'getValue')) {
+                $item = $item->{'getValue'}();
+            }
+            if (is_array($item)) {
+                $item = $this->convertToSimpleData($item);
+            }
+        }
 
         return $data;
     }
